@@ -16,14 +16,29 @@
 
             <ul class="navbar-nav ">
 
-                <li class="nav-item ">
-                    <a class="nav-link texto p-3 border-right text-uppercase text-monospace font-weight-bold"
-                        routerLink='/home'> Home<span class="sr-only">(página atual)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link texto p-3 text-uppercase text-monospace font-weight-bold" routerLink='/home'>
+                        Home<span class="sr-only">(página atual)</span></a>
                 </li>
 
-                <li class="nav-item ">
-                    <a class="nav-link texto p-3 text-uppercase text-monospace font-weight-bold"
+                <li class="nav-item" *ngIf='auth.btnSair()'>
+                    <a class="nav-link texto p-3 text-uppercase text-monospace font-weight-bold" id="feed"
                         routerLink='/feed'>Feed</a>
+                </li>
+
+                <li class="nav-item" *ngIf='!auth.btnSair()'>
+                    <a class="nav-link texto p-3 text-uppercase text-monospace font-weight-bold" id="login"
+                        routerLink='/login'>Login</a>
+                </li>
+
+                <li class="nav-item" *ngIf='!auth.btnSair()'>
+                    <a class="nav-link texto p-3 text-uppercase text-monospace font-weight-bold" id="cadastrar"
+                        routerLink='/cadastrar'>Cadastrar</a>
+                </li>
+
+                <li class="nav-item " *ngIf='auth.btnSair()'>
+                    <a class="nav-link texto p-3 text-uppercase text-monospace font-weight-bold" id="sair"
+                        (click)='sair()'>Sair</a>
                 </li>
 
             </ul>

@@ -9,6 +9,8 @@ import { Postagem } from '../model/Postagem';
 })
 export class FeedComponent implements OnInit {
 
+  nome: String = localStorage.getItem('nome');
+
   key = 'data';
   reverse = true;
 
@@ -18,20 +20,21 @@ export class FeedComponent implements OnInit {
 
   titulo: string;
 
+  exemploTag: string = 'post1';
+  numLike: number = 0;
+  postLike: string[];
+
   constructor(private postagemService: PostagemService) { }
 
   ngOnInit() {
+
     this.findAllPostagens();
 
     let item: string = localStorage.getItem('delOk');
 
     if (item == "true") {
       this.alerta = true
-      localStorage.clear()
-
-      setTimeout(() => {
-        location.assign('/feed')
-      }, 3000)
+      localStorage.removeItem('delOk');
     }
 
     window.scroll(0, 0);
@@ -55,5 +58,4 @@ export class FeedComponent implements OnInit {
       this.listaPostagens = resp
     })
   }
-
 }
